@@ -10,25 +10,25 @@ class ProcessPaymentJob implements ShouldQueue
 {
     use Queueable;
 
-    public $orderId;
+    public int $orderId;
 
-    public function __construct($orderId)
-    {
-        $this->orderId = $orderId;
-    }
+public function __construct(int $orderId)
+{
+    $this->orderId = $orderId;
+}
 
     public function handle(): void
-    {
-        $order = Order::find($this->orderId);
+{
+    $order = Order::find($this->orderId);
 
-        if (!$order) {
-            return;
-        }
-
-        sleep(3);
-
-        $order->update([
-            'status' => 'SUCCESS'
-        ]);
+    if (!$order) {
+        return;
     }
+
+    sleep(3);
+
+    logger("Order {$order->id} dikirim ke Payment Service");
 }
+
+    }
+

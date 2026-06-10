@@ -26,7 +26,7 @@ class OrderController extends Controller
         ], 201);
     }
 
-    public function show($id)
+    public function show(int $id)
     {
         $order = Order::find($id);
 
